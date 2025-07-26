@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/orbitron";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { LifePoints } from "./components/LifePoints";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,6 +34,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={{ fontFamily: "Orbitron_700Bold", fontSize: 30 }}>Yu-Gi-Oh! Life Points</Text>
+      <LifePoints playerNumber={1} />
+      <LifePoints playerNumber={2} />
       <StatusBar style="auto" />
     </View>
   );
