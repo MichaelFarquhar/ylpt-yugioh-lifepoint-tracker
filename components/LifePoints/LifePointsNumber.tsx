@@ -1,5 +1,5 @@
 import { StyleSheet, Text } from "react-native";
-import { lifePoints } from "../../atoms/atomLifePoints";
+import { formattedLifePoints } from "../../atoms/atomLifePoints";
 import { useAtomValue } from "jotai";
 
 interface Props {
@@ -7,8 +7,8 @@ interface Props {
 }
 
 export const LifePointsNumber = ({ playerNumber }: Props) => {
-  const bothPlayerLifePoints = useAtomValue(lifePoints);
-  const currentLifePoints = bothPlayerLifePoints[`player${playerNumber}`];
+  const [player1Points, player2Points] = useAtomValue(formattedLifePoints);
+  const currentLifePoints = playerNumber === 1 ? player1Points : player2Points;
 
   return <Text style={styles.lifePointsText}>{currentLifePoints}</Text>;
 };
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     fontFamily: "Orbitron_700Bold",
     fontSize: 56,
     color: "#585214ff",
-    width: "auto",
+    width: 200, // Fixed width to accommodate 5 digits
+    textAlign: "center",
   },
 });

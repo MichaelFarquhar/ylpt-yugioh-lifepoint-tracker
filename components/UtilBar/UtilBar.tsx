@@ -3,13 +3,16 @@ import { UtilButton } from "../UtilButton";
 import SvgCoinIcon from "../../svgs/SvgCoinIcon";
 import SvgDiceIcon from "../../svgs/SvgDiceIcon";
 import SvgResetIcon from "../../svgs/SvgResetIcon";
+import { useResetAtom } from "jotai/utils";
+import { lifePoints } from "../../atoms/atomLifePoints";
 
 export const UtilBar = () => {
+  const resetLifePoints = useResetAtom(lifePoints);
   return (
     <View style={styles.container}>
       <UtilButton svg={<SvgCoinIcon />} />
       <UtilButton svg={<SvgDiceIcon />} />
-      <UtilButton svg={<SvgResetIcon />} />
+      <UtilButton svg={<SvgResetIcon />} onPress={() => resetLifePoints()} />
     </View>
   );
 };
