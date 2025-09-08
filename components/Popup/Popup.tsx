@@ -1,34 +1,22 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  StyleSheet,
-  Dimensions,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { View, Modal, StyleSheet, Dimensions, TouchableWithoutFeedback } from "react-native";
+import { PopupHeader } from "./PopupHeader";
 
-interface PopupProps {
+interface Props {
   visible: boolean;
   onClose: () => void;
   title: string;
   children?: React.ReactNode;
 }
 
-const Popup: React.FC<PopupProps> = ({ visible, onClose, title, children }) => {
+export const Popup = ({ visible, onClose, title, children }: Props) => {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <TouchableWithoutFeedback onPress={onClose}>
         <View style={styles.backdrop}>
           <TouchableWithoutFeedback onPress={() => {}}>
             <View style={styles.popupContainer}>
-              <View style={styles.header}>
-                <Text style={styles.title}>{title}</Text>
-                <TouchableOpacity style={styles.closeButton} onPress={onClose} activeOpacity={0.7}>
-                  <Text style={styles.closeButtonText}>×</Text>
-                </TouchableOpacity>
-              </View>
+              <PopupHeader title={title} onClose={onClose} />
               <View style={styles.content}>{children}</View>
             </View>
           </TouchableWithoutFeedback>
@@ -61,39 +49,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#333",
-    flex: 1,
-  },
-  closeButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: "#f0f0f0",
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 12,
-  },
-  closeButtonText: {
-    fontSize: 20,
-    color: "#666",
-    fontWeight: "bold",
-    lineHeight: 20,
-  },
   content: {
     padding: 20,
   },
 });
-
-export default Popup;

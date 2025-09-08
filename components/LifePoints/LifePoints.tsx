@@ -5,18 +5,21 @@ import { LifePointsNumber } from "./LifePointsNumber";
 import { LifePointsButton } from "./LifePointsButton";
 import Feather from "@expo/vector-icons/Feather";
 import { useAtom } from "jotai";
-import { formattedLifePoints, lifePoints } from "../../atoms/atomLifePoints";
+import { lifePoints } from "../../atoms/atomLifePoints";
+import { useMemo } from "react";
 
 interface Props {
   playerNumber: 1 | 2;
 }
 
-const imageSource = `https://images.ygoprodeck.com/images/cards_cropped/${
-  cardIds[Math.floor(Math.random() * cardIds.length)]
-}.jpg`;
-
 export const LifePoints = ({ playerNumber }: Props) => {
   const [bothPlayerLifePoints, setBothPlayerLifePoints] = useAtom(lifePoints);
+
+  const imageSource = useMemo(
+    () =>
+      `https://images.ygoprodeck.com/images/cards_cropped/${cardIds[Math.floor(Math.random() * cardIds.length)]}.jpg`,
+    [playerNumber]
+  );
 
   const blurhash =
     "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -34,10 +37,7 @@ export const LifePoints = ({ playerNumber }: Props) => {
         <LifePointsNumber playerNumber={playerNumber} />
       </View>
       <View style={styles.buttonContainer}>
-        <LifePointsButton
-          action={() => {}}
-          icon={<Feather name="minus" size={20} color="black" />}
-        />
+        <LifePointsButton action={() => {}} icon={<Feather name="minus" size={20} color="black" />} />
         <LifePointsButton
           action={() =>
             setBothPlayerLifePoints((state) => {
@@ -51,10 +51,7 @@ export const LifePoints = ({ playerNumber }: Props) => {
           }
           icon={<Feather name="divide" size={20} color="black" />}
         />
-        <LifePointsButton
-          action={() => {}}
-          icon={<Feather name="plus" size={20} color="black" />}
-        />
+        <LifePointsButton action={() => {}} icon={<Feather name="plus" size={20} color="black" />} />
       </View>
     </View>
   );

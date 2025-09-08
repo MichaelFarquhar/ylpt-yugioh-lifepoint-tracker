@@ -1,8 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { UtilButton } from "../UtilButton";
-import SvgCoinIcon from "../../svgs/SvgCoinIcon";
-import SvgDiceIcon from "../../svgs/SvgDiceIcon";
-import SvgResetIcon from "../../svgs/SvgResetIcon";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useResetAtom } from "jotai/utils";
 import { lifePoints } from "../../atoms/atomLifePoints";
 
@@ -10,9 +9,12 @@ export const UtilBar = () => {
   const resetLifePoints = useResetAtom(lifePoints);
   return (
     <View style={styles.container}>
-      <UtilButton svg={<SvgCoinIcon />} />
-      <UtilButton svg={<SvgDiceIcon />} />
-      <UtilButton svg={<SvgResetIcon />} onPress={() => resetLifePoints()} />
+      <UtilButton svg={<MaterialCommunityIcons name="hand-coin" size={22} color="black" />} />
+      <UtilButton svg={<Ionicons name="dice" size={24} color="black" />} />
+      <UtilButton
+        svg={<MaterialCommunityIcons name="restart" size={24} color="black" />}
+        onPress={() => resetLifePoints()}
+      />
     </View>
   );
 };
