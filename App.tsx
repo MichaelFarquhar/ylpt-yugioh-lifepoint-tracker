@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/orbitron";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
-import { LifePoints } from "./components/LifePoints";
+import { LifePoints } from "./components/LifePoints/LifePoints";
 import { UtilBar } from "./components/UtilBar/UtilBar";
 import Popup from "./components/Popup/Popup";
 
